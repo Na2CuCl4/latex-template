@@ -1,0 +1,25 @@
+\documentclass[12pt, a4paper, twoside]{book}
+
+\usepackage{amsmath, amsfonts, amssymb}
+\usepackage{geometry, graphicx, subfigure, enumerate, ntheorem}
+\usepackage[colorlinks, linkcolor=blue]{hyperref}
+
+\setlength{\parindent}{0em}
+\geometry{left=2cm, right=2cm, top=3cm, bottom=3cm}
+
+\title{\textbf{Template}}
+\author{Xia Zirui}
+\date{\today}
+
+\begin{document}
+	\renewcommand{\thepage}{\roman{page}}
+	\maketitle
+	\tableofcontents
+	\ifodd\value{page}\newpage\null\fi
+	\newpage
+	\setcounter{page}{1}
+	\renewcommand{\thepage}{\arabic{page}}
+
+	\include{mathcmd}
+	\include{chapter1}
+\end{document}

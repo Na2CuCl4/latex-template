@@ -1,0 +1,250 @@
+\documentclass[12pt, a4paper, twoside]{book}
+
+\usepackage{amsmath, amsfonts, amssymb} % Basic math package
+
+\usepackage{ctex} % LaTeX for Chinese
+
+\numberwithin{equation}{section} % Number the equation with the section
+
+\usepackage{graphicx, subfigure} % Used for figures and subfigures
+% Example
+\begin{figure}[!ht]
+    \centering
+    \includegraphics[options]{filename}
+    \subfigure[caption]{\includegraphics[options]{filename}}
+    \caption{Figure}
+\end{figure}
+
+\usepackage{enumerate} % Used to empower the enumerate
+% Example
+\begin{enumerate}[(1)]
+    \item This is the first item. 
+    \item This is the second item. 
+\end{enumerate}
+
+\usepackage[colorlinks, linkcolor = blue]{hyperref} % Adjust properties of hyper-links
+
+\usepackage{url} % Used to enable exterior links
+% Example
+\url{https://www.baidu.com/}
+
+\usepackage{colortbl, booktabs} % Set the table background color and line style
+% Example
+\begin{table}[!ht]
+    \centering
+    \begin{tabular}{c|c|c|c}
+        \bottomrule
+        \rowcolor[gray]{0.9}
+        & Column 1 & Column 2 & Column 3 \\
+        \hline
+        Row 1 & $a_{11}$ & $a_{12}$ & $a_{13}$ \\
+        \hline
+        Row 2 & $a_{21}$ & $a_{22}$ & $a_{23}$ \\
+        \toprule
+    \end{tabular}
+    \caption{Table}
+\end{table}
+
+\usepackage{geometry} % Used to adjust the page style
+\setlength{\parindent}{0em} % Adjust the paragraph indent
+\geometry{left = 2cm, right = 2cm, top = 3cm, bottom = 3cm} % Adjust the page margin
+
+\usepackage{framed, xcolor} % Used to create a shade box
+\definecolor{shadecolor}{RGB}{237, 237, 255} % Adjust the shade color
+% Example
+\begin{shaded}
+    This is an example of a shaded box. 
+\end{shaded}
+
+\usepackage{ntheorem, framed, xcolor} % Used to empower theorem environments (with shaded boxes)
+\definecolor{shadecolor}{RGB}{237, 237, 255} % Adjust the shade color
+\theorembodyfont{\rmfamily} % The font of the theorem body
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem{_def}[theorem]{Definition}
+\newenvironment{definition}{\begin{shaded}\begin{_def}}{\end{_def}\end{shaded}}
+\newtheorem{proposition}[theorem]{Proposition}
+\newtheorem{corollary}[theorem]{Corollary}
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{example}[theorem]{Example}
+\newtheorem*{proof}{Proof}
+\newtheorem*{solution}{Solution}
+\newtheorem*{note}{Note}
+
+% Self-defined problem-solution environment
+\newcounter{problemname}[section]
+\newenvironment{problem}{\refstepcounter{problemname}\vspace*{0.5\baselineskip}\par\noindent\textsc{Problem \arabic{chapter}.\arabic{section}.\arabic{problemname}} }{\par\vspace*{0.5\baselineskip}}
+\newenvironment{solution}{\vspace*{0.5\baselineskip}\par\noindent\textsc{Solution }}{\par\vspace*{0.5\baselineskip}}
+\newenvironment{note}{\vspace*{0.5\baselineskip}\par\noindent\textsc{Note }}{\par\vspace*{0.5\baselineskip}}
+
+\usepackage{listings, xeCJK, xcolor} % Used to create coding boxes and output boxes
+\definecolor{cmtColor}{rgb}{0, 0.5, 0}
+\definecolor{strColor}{rgb}{0.639, 0.082, 0.082}
+\definecolor{bgColor}{rgb}{0.9, 0.9, 0.9}
+\newcounter{C++}[section]
+\newcounter{output}[section]
+\lstset{
+	% Script
+	basicstyle = \footnotesize\ttfamily,	% Basic style
+	keywordstyle = \bfseries\color{blue},	% Keyword style
+	otherkeywords = {},						% Add other keywords
+	deletendkeywords = {},					% Keywords to be deleted
+	commentstyle = \color{cmtColor},		% Comment style
+	stringstyle = \color{strColor},			% String style
+	extendedchars = true,					% Enable extended character sets
+	breaklines = true,						% Determine if a line would break when too long
+	breakatwhitespace = false,				% The line only breaks at white-space
+	keepspaces = true,						% Keep spaces in text
+	showspaces = false,						% Show spaces everywhere to add particular underscores
+	showstringspaces = false,				% Show spaces in string to add particular underscores
+	showtabs = false,						% Show tabs everywhere to add particular unders
+	tabsize = 4,							% Size of tab
+	flexiblecolumns = true,					% Enable flexible columns
+	% Line number
+	numbers = left,							% The position of the line number
+	numberstyle = \scriptsize\color{black},	% Style of the line number
+	numbersep = 8pt,						% Distance between the number and the coding block
+	% Caption
+	captionpos = b,							% The position of the caption
+	% Escape
+	escapeinside = {<@}{@>}					% Symbols inside will be compiled as LaTeX code
+}
+\lstnewenvironment{Cpp}[2]{
+	\stepcounter{C++}
+	\renewcommand*{\lstlistingname}{Code}
+	\renewcommand{\thelstlisting}{C.\arabic{section}.\arabic{C++}}
+	\lstset{
+		% Language
+		language = C++,						% Language of the code
+		% Appearance
+		frame = shadowbox,					% Frame style of the coding block
+		backgroundcolor = \color{bgColor},	% Background color of the coding block
+		framerule = 0.3pt,					% Width of the border
+		rulecolor = \color{black},			% Color of the border
+		rulesepcolor = \color{gray},		% Color of the shadow
+		% Caption
+		caption = {#1}						% Caption
+	}
+	\label{#2}
+}{}
+\lstnewenvironment{Cpp*}[1]{
+	\renewcommand*{\lstlistingname}{Code}
+	\renewcommand{\thelstlisting}{}
+	\lstset{
+		% Language
+		language = C++,						% Language of the code
+		% Appearance
+		frame = shadowbox,					% Frame style of the coding block
+		backgroundcolor = \color{bgColor},	% Background color of the coding block
+		framerule = 0.3pt,					% Width of the border
+		rulecolor = \color{black},			% Color of the border
+		rulesepcolor = \color{gray},		% Color of the shadow
+		% Caption
+		caption = {#1}						% Caption
+	}
+}{}
+\lstnewenvironment{Output}[2]{
+	\stepcounter{output}
+	\renewcommand*{\lstlistingname}{Output}
+	\renewcommand{\thelstlisting}{O.\arabic{section}.\arabic{output}}
+	\lstset{
+		% Appearance
+		frame = ltrb,						% Frame style of the coding block
+		backgroundcolor = \color{white},	% Background color of the coding block
+		framerule = 0.3pt,					% Width of the border
+		% Caption
+		caption = {#1}						% Caption
+	}
+	\label{#2}
+}{}
+\lstnewenvironment{Output*}[2]{
+	\renewcommand*{\lstlistingname}{Output}
+	\renewcommand{\thelstlisting}{}
+	\lstset{
+		% Appearance
+		frame = ltrb,						% Frame style of the coding block
+		backgroundcolor = \color{white},	% Background color of the coding block
+		framerule = 0.3pt,					% Width of the border
+		% Caption
+		caption = {#1}						% Caption
+	}
+}{}
+\makeatletter
+\renewcommand{\lstlistlistingname}{List of codes and outputs}
+\renewcommand{\l@lstlisting}[2]{\@dottedtocline{1}{1.5em}{4em}{#1}{#2}}
+\makeatother
+
+\usepackage[most]{tcolorbox} % Used to create fancy theorem environments
+\usepackage{ntheorem, framed, xcolor} % Used to empower theorem environments (with shaded boxes)
+% Define colors
+\definecolor{thmColor}{rgb}{0.486, 0.533, 0.439}
+\definecolor{lemColor}{rgb}{0.529, 0.580, 0.655}
+\definecolor{corColor}{rgb}{0.635, 0.600, 0.541}
+\definecolor{defColor}{rgb}{0.580, 0.325, 0.341}
+\definecolor{exaColor}{rgb}{0.337, 0.518, 0.569}
+\definecolor{shadecolor}{RGB}{237, 237, 255}
+% Define textbox style
+\newtcolorbox{textbox}[2]{
+	enhanced,
+	breakable,
+	colback = white,
+	colframe = {#2},
+	title = {#1},
+	fonttitle = \bfseries,
+	attach boxed title to top left,
+	boxed title style = {
+		size = small,
+		colback = {#2},
+		colframe = {#2},
+	}
+}
+% The font of the theorem body
+\theorembodyfont{\rmfamily}
+% Introduce a new counter
+\newtheorem{thm}{Theorem}[section]
+% Define the theorem environment
+\newenvironment{theorem}[1][]{\refstepcounter{thm}\begin{textbox}{定理 \thethm\ifthenelse{\equal{#1}{}}{}{（#1）}}{thmColor}}{\end{textbox}}
+\newenvironment{definition}[1][]{\refstepcounter{thm}\begin{textbox}{定义 \thethm\ifthenelse{\equal{#1}{}}{}{（#1）}}{defColor}}{\end{textbox}}
+\newenvironment{corollary}[1][]{\refstepcounter{thm}\begin{textbox}{推论 \thethm\ifthenelse{\equal{#1}{}}{}{（#1）}}{corColor}}{\end{textbox}}
+\newenvironment{lemma}[1][]{\refstepcounter{thm}\begin{textbox}{引理 \thethm\ifthenelse{\equal{#1}{}}{}{（#1）}}{lemColor}}{\end{textbox}}
+\newenvironment{example}[1][]{\refstepcounter{thm}\begin{textbox}{例 \thethm\ifthenelse{\equal{#1}{}}{}{（#1）}}{exaColor}}{\end{textbox}}
+\newtheorem*{_proof}{证明}
+\newtheorem*{_solution}{解}
+\newtheorem*{note}{注}
+\newenvironment{proof}{\begin{_proof}}{\hfill{$\Box$}\end{_proof}}
+\newenvironment{solution}{\begin{_solution}}{\hfill{$\Box$}\end{_solution}}
+% Automatically generate an index of the theorems
+\usepackage{etoolbox} % Used to define array of strings, maybe not necessary
+\def\envname{}
+\newcounter{rownum}
+\newcommand{\newtheoremindex}[1]{\def\cntname{lbl#1}\newcounter{\cntname}}
+\newcommand{\addtext}[1]{
+    \def\cntname{lbl\envname}
+    \def\cmdname{txt\envname}
+    \stepcounter{\cntname}
+    \global\csdef{\cmdname\arabic{\cntname}}{#1}
+}
+\newcommand{\gettext}[1]{\csuse{txt\envname#1}}
+\newcommand{\addlabel}[1]{
+    \def\cntname{lbl\envname}
+    \global\csdef{\cntname\arabic{\cntname}}{#1}
+    \label{#1}
+}
+\newcommand{\getlabel}[1]{\csuse{lbl\envname#1}}
+\newcommand{\maketheoremindex}[2]{
+    \setcounter{rownum}{0}
+    \def\cntname{lbl#1}
+    \global\def\envname{#1}
+	\begin{tabbing}
+		\textbf{#2编号}\hspace{1cm}\=\textbf{页码}\hspace{1cm}\=\textbf{说明}\\
+		\whileboolexpr
+			{ test {\ifnumcomp{\value{rownum}}{<}{\arabic{\cntname}}} }
+			{\stepcounter{rownum}\ref{\getlabel{\therownum}}\>\pageref{\getlabel{\therownum}}\>\gettext{\therownum}\\}
+	\end{tabbing}
+}
+\newtheoremindex{thm}
+\newenvironment{theorem}[1][]{\global\def\envname{thm}\addtext{#1}\refstepcounter{thm}\begin{textbox}{定理 \thethm\ifthenelse{\equal{#1}{}}{}{（#1）}}{thmColor}}{\end{textbox}}
+
+% Using EnglischeSchT script font style
+\newfontfamily{\calti}{EnglischeSchT}
+\newcommand{\mathcalti}[1]{\mbox{\calti{#1}}}
+\newcommand{\mathcaltibf}[1]{\mbox{\bf\calti{#1}}}

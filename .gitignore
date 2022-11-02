@@ -1,0 +1,8 @@
+Figure/
+*.aux
+*.log
+*.out
+*.pdf
+*.gz
+*.thm
+*.toc
