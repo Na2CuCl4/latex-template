@@ -1,5 +1,6 @@
-Figure/
 *.aux
+*.bbl
+*.blg
 *.log
 *.out
 *.pdf
